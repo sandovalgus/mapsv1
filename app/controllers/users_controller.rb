@@ -5,16 +5,11 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    puts "***********************users************************"
-    puts @users.inspect
     @map_hash = Gmaps4rails.build_markers(@users) do |user, marker|
       marker.lat user.latitude
       marker.lng user.longitude
-      marker.infowindow user.name
+      marker.infowindow [user.name,"</br>", user.latitude,user.latitude].join('-')
     end
-    puts "***********************hash************************"
-    puts @map_hash.inspect
-
 
   end
 

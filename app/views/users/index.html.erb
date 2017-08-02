@@ -1,7 +1,3 @@
-
-
-
-
 <div class="page-header">
   <%= link_to new_user_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
@@ -39,22 +35,18 @@
     </tbody>
   </table>
 </div>
+<div id="latlong">
+This is the lat long of the currently clicked point.
+</div>
+<div id="latitude"></div>
+<div id="longitude"></div>
+</br>
+
 
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 
 <script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers(<%=raw @map_hash.to_json %>);
-
-  
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-
-
-
-
+  createMap(<%=raw @map_hash.to_json %>);
 </script>
